@@ -63,8 +63,13 @@ def get_browser():
 def format_json(filename):
     f = open(filename)
     jd = json.loads(f.read())
-    f = open(filename + '-formatted', 'w')
-    f.write(json.dumps(jd, indent=4))
+    d = []
+    for i in jd:
+        # d += i['data']
+        d.append(i['data']['personDetails'])
+    
+    f = open(filename + '-final-formatted.json', 'w')
+    f.write(json.dumps(d, indent=4))
     f.close()
 
 def searchScrape(browser, company=False):
@@ -258,5 +263,5 @@ def login():
     # time.sleep(100)
     # browser.close()
 
-login()
+# login()
 # format_json(OUTPUT_FILENAME)
